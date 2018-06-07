@@ -14,7 +14,7 @@ export default class extends Component {
         const {role} = user.subject.subjectRoles[0];
         console.log(`user ${JSON.stringify(user,null,'\t')}`);
         return (
-            <Paper>
+            <div>
                 <Typography variant="headline">Login</Typography>
                 <Typography variant="subheading">{user.subject.login}</Typography>
 
@@ -35,7 +35,7 @@ export default class extends Component {
                         <ListItemText key={permission} primary={permission}/>
                     )}
                 </List>
-            </Paper>
+            </div>
 
         )
 

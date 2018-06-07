@@ -7,3 +7,7 @@ This is frontend part for
 - **Material-UI** - React components for material design
 - **Webpack** - Module bundler  
 - **Flow** - Static type checker for JS 
+
+
+
+![demo](https://i.imgur.com/2UZmJcp.png)

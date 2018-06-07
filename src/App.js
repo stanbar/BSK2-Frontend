@@ -2,11 +2,13 @@ import React, {Component, Fragment} from 'react';
 import Footer from './Layouts/Footer'
 import Header from './Layouts/Header'
 import Login from './Main/Login'
-
+import {Button} from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import {Main} from './Main/Main'
 import {tabs} from './store'
 import {axiosClient} from "./axiousClient";
 import {ToastContainer, toast} from 'react-toastify';
+import red from '@material-ui/core/colors/red';
 
 export default class extends Component {
 
@@ -76,7 +78,7 @@ export default class extends Component {
         const {user, selectedTabIndex, selectedTabData, selectedTab, selectedItem} = this.state;
         console.log(selectedTabIndex);
         return (
-            <Fragment>
+            <Fragment style={{position: 'relative',}}>
                 {!user ?
                     <Login onUserLoggedIn={this.onUserLoggedIn}/>
                     :
@@ -89,10 +91,20 @@ export default class extends Component {
                             user={this.state.user}
                             data={selectedTabData}>
                         </Main>
-
                         <Footer
                             selectedTabIndex={selectedTabIndex}
                             onSelect={this.handleTabSelected}/>
+                        <Button variant="fab" style={{
+                            margin: 0,
+                            top: 'auto',
+                            right: 20,
+                            bottom: 200,
+                            left: 'auto',
+                            position: 'fixed',
+                            backgroundColor: red[500],
+                        }} color="#E30425">
+                            <AddIcon />
+                        </Button>
                     </Fragment>
                 }
                 <ToastContainer

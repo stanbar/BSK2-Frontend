@@ -69,8 +69,6 @@ export class Main extends Component {
 
                     </Paper>
                 </Grid>
-
-
             </Grid>
         )
     }
