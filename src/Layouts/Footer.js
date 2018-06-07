@@ -15,8 +15,7 @@ export default ({selectedTabIndex, onSelect}) => {
             indicatorColor="primary"
             textColor="primary"
             centered>
-            <Tab label="All"/>
-            {tabs.map(tab => <Tab key={tab} label={tab}/>)}
+            {tabs.map(tab => <Tab key={tab.name} label={tab.name}/>)}
 
         </Tabs>
     </Paper>

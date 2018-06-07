@@ -1,4 +1,5 @@
-import React, {Component, Fragment} from 'react';
+// @flow
+import React, {Component} from 'react';
 import {
     Grid,
     Paper,
@@ -6,11 +7,8 @@ import {
     List,
     ListItem,
     ListItemText,
-    ListItemSecondaryAction,
-    IconButton
 } from '@material-ui/core';
-import {Edit, Delete} from '@material-ui/icons'
-import Login from './Login'
+import {Tab} from '../store'
 import User from './MyUser'
 
 const styles = {
@@ -23,35 +21,57 @@ const styles = {
     }
 };
 
+type MainProps = {
+    user: User,
+    data: mixed,
+    tab: Tab,
+    selectedItem : any,
+    onItemSelected: Function
+}
 
-export default ({
-                    user,
-                    onUserLoggedIn,
-                    dataModel,
-                    data,
-                    DataComponent
-                }) =>
-    <Grid container>
-        <Grid item sm={2}>
-            {user
-                ? <User style={styles.Paper} user={user}/>
-                : <Login styles={styles.Paper} onUserLoggedIn={onUserLoggedIn}/>
-            }
-        </Grid>
-        <Grid item sm={10}>
-            <Paper style={styles.Paper}>
+export class Main extends Component {
+    render() {
+        const {user, data, tab, selectedItem} = this.props;
 
-                <List component="nav">
-                    {data ?
-                        data.map(item => <DataComponent key={item.id} data={item}/>)
-                        : <ListItem button key="mainEmpty">
-                            <ListItemText primary="Empty"/>
-                        </ListItem>
-                    }
-                </List>
+        const DataComponent = tab.component;
+        const DataComponentDetailed = tab.detailedComponent;
+        console.log(`render ${JSON.stringify(selectedItem)}`);
+        return (
+            <Grid container>
+                <Grid item sm={2}>
+                    <Paper style={styles.Paper}>
+                        <User user={user}/>
+                    </Paper>
+                </Grid>
+                <Grid item sm={5}>
+                    <Paper style={styles.Paper}>
 
-            </Paper>
-        </Grid>
+                        <List component="nav">
+                            {data ?
+                                data.map(item => <DataComponent onClick={() => this.props.onItemSelected(item)}
+                                                                key={tab.name + item.id}
+                                                                data={item}/>)
+                                : <ListItem key="mainEmpty">
+                                    <ListItemText primary="Empty"/>
+                                </ListItem>
+                            }
+                        </List>
+
+                    </Paper>
+                </Grid>
+                <Grid item sm={5}>
+                    <Paper style={styles.Paper}>
+                        {selectedItem ?
+                            <DataComponentDetailed data={selectedItem}/>
+                            :
+                            <Typography>Please select item</Typography>
+                        }
+
+                    </Paper>
+                </Grid>
 
 
-    </Grid>
+            </Grid>
+        )
+    }
+}

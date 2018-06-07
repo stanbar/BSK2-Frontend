@@ -1,19 +1,12 @@
 // @flow
-import React, {Component} from 'react';
+import React from 'react';
 import {
     ListItem,
     ListItemText,
 } from '@material-ui/core';
-import Role from "../Role/Role";
-export type SubjectRole ={
-    role: Role
-}
+import type {Subject} from "../Subject/Subject";
 
-export type Subject = {
-    id: number,
-    login: string,
-    subjectRoles : Array<SubjectRole>
-}
+
 export type User = {
     id: number,
     subject: Subject,
@@ -22,10 +15,15 @@ export type User = {
     lastName: string,
     driverLicence: string
 }
-
-export default (user: User) =>
-    <ListItem button>
-        <ListItemText primary="User"/>
-        <ListItemText primary={user.id}/>
-        <ListItemText primary={user.subject.login}/>
+export type UserProps = {
+    data: User,
+    onClick: Function
+}
+export default (props: UserProps) =>
+    <ListItem button onClick={props.onClick}>
+        <ListItemText inset primary="User"/>
+        <ListItemText inset primary={props.data.id}/>
+        <ListItemText primary={props.data.firstName}/>
+        <ListItemText primary={props.data.lastName}/>
+        <ListItemText primary={props.data.subject.login}/>
     </ListItem>

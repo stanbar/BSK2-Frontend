@@ -1,28 +1,24 @@
-import React, {Fragment} from 'react';
-import {User} from './User'
+import React from 'react';
+import {UserProps} from './User'
 
 import {
-    List,
-    ListItem,
-    ListItemText,
     Typography,
     Paper
 } from '@material-ui/core';
 
-export default (user: User) =>
+export default (props: UserProps) =>
     <Paper>
-
         <Typography variant="headline">Login</Typography>
-        <Typography variant="subheading">{user.subject.login}</Typography>
+        <Typography variant="subheading">{props.data.subject.login}</Typography>
 
         <Typography variant="headline">Name</Typography>
-        <Typography variant="subheading">{user.firstName} {user.lastName}</Typography>
+        <Typography variant="subheading">{props.data.firstName} {props.data.lastName}</Typography>
 
         <Typography variant="headline">PESEL</Typography>
-        <Typography variant="subheading">{user.PESEL}</Typography>
+        <Typography variant="subheading">{props.data.PESEL}</Typography>
 
         <Typography variant="headline">DriverLicence</Typography>
-        <Typography variant="subheading">{user.driverLicence}</Typography>
+        <Typography variant="subheading">{props.data.driverLicence}</Typography>
 
     </Paper>
 

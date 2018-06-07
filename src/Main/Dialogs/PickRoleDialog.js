@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import {
     Button,
     Dialog,
@@ -10,7 +10,6 @@ import {
     ListItemText,
     DialogTitle,
 } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
 
 type RoleOption = {
     id : number,
@@ -33,7 +32,7 @@ export default (props : PickRoleDialogProps) =>
             </DialogContentText>
 
             <List component="ul">
-                {props.roles.map(({id, name, description}) =>
+                {props.roles.map(({id, name}) =>
                     <ListItem
                         key={id}
                         button

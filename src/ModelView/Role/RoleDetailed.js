@@ -1,22 +1,34 @@
 import React from 'react';
-import {RoleProps} from './Role'
-
 import {
+    Paper,
     List,
+    Typography,
     ListItem,
     ListItemText,
 } from '@material-ui/core';
 
+import {RoleProps} from './Role'
+
 export default (props: RoleProps) =>
-    <List component="nav">
-        {props.data.permissions
-            ?
-            props.data.permissions.map(permission =>
-                <ListItem button key={permission}>
-                    <ListItemText primary={permission}/>
-                </ListItem>)
-            : <ListItem button key="permissionsEmpty">
-                <ListItemText primary="No permissions"/>
-            </ListItem>
-        }
-    </List>
+    <div>
+        <Typography variant="headline">ID</Typography>
+        <Typography>{props.data.id}</Typography>
+        <br/>
+        <Typography variant="headline">Name</Typography>
+        <Typography>{props.data.name}</Typography>
+        <br/>
+        <Typography variant="headline">Permissions</Typography>
+        <br/>
+        <List component="nav">
+            {props.data.permissions
+                ?
+                props.data.permissions.map(permission =>
+                    <ListItem key={permission.permission}>
+                        <ListItemText primary={permission.permission}/>
+                    </ListItem>)
+                : <ListItem key="permissionsEmpty">
+                    <ListItemText primary="No permissions"/>
+                </ListItem>
+            }
+        </List>
+    </div>

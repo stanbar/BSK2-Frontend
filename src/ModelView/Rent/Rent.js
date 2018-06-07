@@ -4,17 +4,17 @@ import {
     ListItem,
     ListItemText,
 } from '@material-ui/core';
-import Car from "../Car/Car";
-import User from "../User/User";
+import {Car} from "../Car/Car";
+import {User} from "../User/User";
 
-type Rent = {
+export type Rent = {
     id: string,
     user: User,
     car: Car,
     startDate: string,
     endDate: string
 }
-type RentProps = {
+export type RentProps = {
     data: Rent
 }
 export default (props: RentProps) =>

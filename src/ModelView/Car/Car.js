@@ -5,12 +5,12 @@ import {
     ListItemText,
 } from '@material-ui/core';
 
-type Car = {
+export type Car = {
     brand: string,
     model: string,
     price: number
 }
-type CarProps = {
+export type CarProps = {
     data: Car
 }
 

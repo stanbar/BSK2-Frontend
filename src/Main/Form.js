@@ -15,7 +15,6 @@ const styles = theme => ({
 });
 
 export default withStyles(styles)(class extends Component {
-
     state = {
         brand: '',
         model: ''

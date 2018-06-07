@@ -1,14 +1,15 @@
 import React from 'react';
-import {AppBar, Toolbar, Typography} from '@material-ui/core';
-import CreateDialog from '../Main/Dialogs/Create'
+import {AppBar, Toolbar, Typography, Button} from '@material-ui/core';
 
-export default props =>
+export default ({user, onLoginClick, onLogoutClick}) =>
     <AppBar position="static">
         <Toolbar>
             <Typography variant="headline" color="inherit" style={{flex: 1}}>
                 BSK2-Frontend
             </Typography>
-
-            <CreateDialog />
+            {user ?
+                <Button color="inherit" onClick={onLogoutClick}>Logout</Button>
+                : null
+            }
         </Toolbar>
     </AppBar>

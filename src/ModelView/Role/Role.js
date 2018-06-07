@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
-    List,
     ListItem,
     ListItemText,
 } from '@material-ui/core';
@@ -17,26 +16,12 @@ export type Role = {
 
 }
 export type RoleProps = {
-    data: Role
+    data: Role,
+    onClick: Function
 }
 export default (props: RoleProps) =>
-    <ListItem button>
+    <ListItem button onClick={props.onClick}>
         <ListItemText primary={props.data.id}/>
         <ListItemText primary={props.data.name}/>
     </ListItem>
 
-export class RoleDetailed extends Component {
-    render() {
-        return (
-            <List component="nav">
-                {data ?
-                    data.map(item => <DataComponent key={item.id} data={item}/>)
-                    : <ListItem button key="mainEmpty">
-                        <ListItemText primary="Empty"/>
-                    </ListItem>
-                }
-            </List>
-
-        )
-    }
-}
