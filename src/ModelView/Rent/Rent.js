@@ -18,7 +18,7 @@ export type RentProps = {
     data: Rent
 }
 export default (props: RentProps) =>
-    <ListItem button>
+    <ListItem button onClick={props.onClick}>
         <ListItemText primary={props.data.user.subject.login}/>
         <ListItemText primary={props.data.startDate + '-' + props.data.endDate}/>
     </ListItem>

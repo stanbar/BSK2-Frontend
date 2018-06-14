@@ -35,7 +35,6 @@ export class Main extends Component {
 
         const DataComponent = tab.component;
         const DataComponentDetailed = tab.detailedComponent;
-        console.log(`render ${JSON.stringify(selectedItem)}`);
         return (
             <Grid container>
                 <Grid item sm={2}>

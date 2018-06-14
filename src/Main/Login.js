@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {Card, CardContent, Paper, Button, Typography, Input} from '@material-ui/core';
+import {TextField, Card, CardContent, Paper, Button, Typography, Input} from '@material-ui/core';
 import PickRoleDialog from './Dialogs/PickRoleDialog'
-import {axiosClient} from "../axiousClient";
+import axios from "axios";
+
 
 const styles = {
     card: {
@@ -18,27 +19,30 @@ const styles = {
 
 export default class extends Component {
     state = {
-        login: '',
-        password: '',
+        login: 'stasbar',
+        password: 'hardpassword',
         roles: [],
         openPickRoles: false
     };
 
     handleLoginClick = () => {
 
-        axiosClient.request({
+        axios.request({
             method: 'post',
             url: '/login',
             auth: {
-                username: 'stasbar',
-                password: 'hardpassword'
+                username: this.state.login,
+                password: this.state.password
             }
         }).then((response) => {
+            axios.defaults.headers.common['Authorization'] = 'Basic ' + btoa(this.state.login + ':' + this.state.password);
+
             console.log(response.data);
             this.setState({
                 roles: response.data,
                 openPickRoles: true
             });
+
 
         }).catch(function (error) {
             console.log(error);
@@ -46,15 +50,11 @@ export default class extends Component {
     };
 
     onRoleSelected = id => {
-        axiosClient.request({
+        axios.request({
             method: 'post',
             url: '/login',
             params: {
                 roleId: id
-            },
-            auth: {
-                username: 'stasbar',
-                password: 'hardpassword'
             }
         }).then(response => {
             const user = response.data;
@@ -71,27 +71,35 @@ export default class extends Component {
         }
     };
 
+    onCancelClicked = () => {
+        this.setState({
+            openPickRoles: false
+        })
+    };
+
     render() {
         return (
-            <div style={{display: 'flex', justifyContent: 'center'}}>
+            <div>
                 <Card>
                     <CardContent>
                         <Typography variant="headline">
                             Login
                         </Typography>
                         <br/>
-                        <Input
+                        <TextField
+                            label="Login"
+                            defaultValue="stasbar"
                             onChange={(e) => this.setState({login: e.target.value})}
-                            placeholder="Login"
                             inputProps={{
                                 'aria-label': 'Description',
                             }}
                         />
                         <br/>
-                        <Input
+                        <TextField
+                            defaultValue="hardpassword"
                             onKeyPress={this.handleKeyPress}
                             onChange={(e) => this.setState({password: e.target.value})}
-                            placeholder='Password'
+                            label='Password'
                             type='password'
                             inputProps={{
                                 'aria-label': 'Description',
@@ -101,11 +109,12 @@ export default class extends Component {
                         <Button style={{marginTop: 20}}
                                 variant="outlined"
                                 onClick={this.handleLoginClick}>
-                            Login
+                            Log in
                         </Button>
                     </CardContent>
                 </Card>
                 <PickRoleDialog
+                    onCancelClicked={this.onCancelClicked}
                     open={this.state.openPickRoles}
                     roles={this.state.roles}
                     onRoleSelected={this.onRoleSelected}/>

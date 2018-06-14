@@ -21,6 +21,7 @@ type PickRoleDialogProps = {
     roles:Array<RoleOption>,
     onRoleSelected : Function
 }
+
 export default (props : PickRoleDialogProps) =>
     <Dialog
         open={props.open}
@@ -44,7 +45,7 @@ export default (props : PickRoleDialogProps) =>
 
         </DialogContent>
         <DialogActions>
-            <Button onClick={this.handleToggle} color="primary">
+            <Button onClick={props.onCancelClicked} color="primary">
                 Cancel
             </Button>
         </DialogActions>

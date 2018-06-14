@@ -5,10 +5,13 @@ import Login from './Main/Login'
 import {Button} from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import {Main} from './Main/Main'
+import Register from './Main/Register'
 import {tabs} from './store'
-import {axiosClient} from "./axiousClient";
+import axios from 'axios'
+
 import {ToastContainer, toast} from 'react-toastify';
 import red from '@material-ui/core/colors/red';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 export default class extends Component {
 
@@ -16,11 +19,13 @@ export default class extends Component {
         selectedTabIndex: 0,
         selectedTabData: null,
         selectedTab: tabs[0],
-        selectedItem: null
+        selectedItem: null,
+        openAddNewItem: null,
+        isSignUp: false
     };
 
     logout = () => {
-        axiosClient.get('/logout').then((response) => {
+        axios.get('/logout').then((response) => {
             toast.info('<-- /logout OK');
             this.setState({
                 user: null,
@@ -29,6 +34,7 @@ export default class extends Component {
                 selectedTab: tabs[0],
                 selectedItem: null
             })
+
         }).catch(function (error) {
             console.log(error);
             toast.error('<-- /logout' + error);
@@ -41,17 +47,13 @@ export default class extends Component {
 
         this.setState({
             selectedItem: null,
+            selectedTabData: [],
             selectedTabIndex: index,
             selectedTab: tabs[index]
         });
 
         toast.info('--> /' + tab.name);
-        axiosClient.get('/' + tab.name, {
-            auth: {
-                username: 'stasbar',
-                password: 'hardpassword'
-            }
-        }).then((response) => {
+        axios.get('/' + tab.name).then((response) => {
             toast.info('<-- /' + tab.name);
             console.log(response.data);
             this.setState({
@@ -60,7 +62,7 @@ export default class extends Component {
             });
         }).catch(function (error) {
             console.log(error);
-            toast.error('<-- /' + tab.name + error);
+            toast.error('<--ERROR /' + tab.name + error);
         });
     };
     onUserLoggedIn = user => {
@@ -68,49 +70,78 @@ export default class extends Component {
             user
         })
     };
+    handleSignupClick = () => {
+        this.setState({
+            isSignUp: true
+        })
+    };
+    onSignedIn = () => {
+        this.setState({
+            isSignUp: false
+        })
+    };
 
     onItemSelected = item => {
-        console.log('nigdy się nie wykonuje !');
         this.setState({selectedItem: item})
+    };
+
+    handleFabClicked = () => {
+        this.setState({openAddNewItem : true})
+    };
+    onCancelAddingClicked = () =>{
+        this.setState({openAddNewItem : false})
     }
 
     render() {
-        const {user, selectedTabIndex, selectedTabData, selectedTab, selectedItem} = this.state;
+        const {user, isSignUp, openAddNewItem, selectedTabIndex, selectedTabData, selectedTab, selectedItem} = this.state;
+        const AddNewtemDialog = tabs[selectedTabIndex].addNewItemDialog;
+
         console.log(selectedTabIndex);
         return (
-            <Fragment style={{position: 'relative',}}>
-                {!user ?
-                    <Login onUserLoggedIn={this.onUserLoggedIn}/>
-                    :
-                    <Fragment>
-                        <Header user={user} onLogoutClick={this.logout}/>
-                        <Main
-                            onItemSelected={(item) => this.onItemSelected(item)}
-                            selectedItem={selectedItem}
-                            tab={selectedTab}
-                            user={this.state.user}
-                            data={selectedTabData}>
-                        </Main>
-                        <Footer
-                            selectedTabIndex={selectedTabIndex}
-                            onSelect={this.handleTabSelected}/>
-                        <Button variant="fab" style={{
-                            margin: 0,
-                            top: 'auto',
-                            right: 20,
-                            bottom: 200,
-                            left: 'auto',
-                            position: 'fixed',
-                            backgroundColor: red[500],
-                        }} color="#E30425">
-                            <AddIcon />
+            <div>
+
+                {user && <Fragment>
+                    <Header user={user} onLogoutClick={this.logout}/>
+                    <Main
+                        onItemSelected={(item) => this.onItemSelected(item)}
+                        selectedItem={selectedItem}
+                        tab={selectedTab}
+                        user={this.state.user}
+                        data={selectedTabData}>
+                    </Main>
+                    <Footer
+                        selectedTabIndex={selectedTabIndex}
+                        onSelect={this.handleTabSelected}/>
+                    <Button variant="fab" style={{
+                        margin: 0,
+                        top: 'auto',
+                        right: 20,
+                        bottom: 200,
+                        left: 'auto',
+                        position: 'fixed',
+                        backgroundColor: red[500],
+                    }} color="secondary"
+                            onClick={this.handleFabClicked}>
+                        <AddIcon/>
+                    </Button>
+                </Fragment>}
+
+                {!user && isSignUp && <Register onSignedIn={this.onSignedIn}/>}
+
+                {!user && !isSignUp && <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div>
+                        <Login onUserLoggedIn={this.onUserLoggedIn}/>
+                        <br/>
+                        <Button onClick={this.handleSignupClick}>
+                            Register
                         </Button>
-                    </Fragment>
-                }
+                    </div>
+                </div>}
+                {AddNewtemDialog && <AddNewtemDialog open={openAddNewItem} onCancelClicked={this.onCancelAddingClicked}/>}
                 <ToastContainer
-                    autoClose={2000}
+                    autoClose={5000}
                     position="bottom-right"/>
-            </Fragment>
+            </div>
         )
 
     }

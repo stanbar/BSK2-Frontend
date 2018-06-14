@@ -12,7 +12,6 @@ export default class extends Component {
     render() {
         const {user} = this.props;
         const {role} = user.subject.subjectRoles[0];
-        console.log(`user ${JSON.stringify(user,null,'\t')}`);
         return (
             <div>
                 <Typography variant="headline">Login</Typography>

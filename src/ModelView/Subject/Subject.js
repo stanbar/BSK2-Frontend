@@ -15,9 +15,9 @@ export type Subject = {
     subjectRoles: Array<SubjectRole>
 }
 
-export default (subject: Subject) =>
-    <ListItem button>
+export default (props) =>
+    <ListItem button onClick={this.props.onClick}>
         <ListItemText primary="Subject"/>
-        <ListItemText primary={subject.id}/>
-        <ListItemText primary={subject.login}/>
+        <ListItemText primary={props.data.id}/>
+        <ListItemText primary={props.data.login}/>
     </ListItem>

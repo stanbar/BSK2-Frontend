@@ -16,6 +16,7 @@ export type RepairProps = {
     data: Repair
 }
 export default (props: RepairProps) =>
-    <ListItem button>
-        <ListItemText primary={props.data.mechanic}/>
+    <ListItem button onClick={props.onClick}>
+        <ListItemText primary={props.data.mechanic.firstName + " " + props.data.mechanic.lastName}/>
+        <ListItemText primary={props.data.car.brand + " " + props.data.car.model}/>
     </ListItem>

@@ -15,7 +15,7 @@ export type MechanicProps = {
     data: Mechanic
 }
 export default (props : MechanicProps) =>
-    <ListItem button>
+    <ListItem button onClick={props.onClick}>
         <ListItemText primary={props.data.subject.login}/>
         <ListItemText primary={props.data.firstName + '-' + props.data.lastName}/>
     </ListItem>
