@@ -9,7 +9,7 @@ This is frontend part for
 - **Flow** - Static type checker for JS 
 
 
-![login](https://i.imgur.com/mpcteJz.png)
+![welcome](https://i.imgur.com/1SywC6C.png)
 ## Signup -> POST /signup
 ![signup](https://i.imgur.com/ks3gJ19.png)
 
