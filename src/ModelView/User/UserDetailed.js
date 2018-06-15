@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 
 export default (props: UserProps) =>
-    <Paper>
+    <div>
         <Typography variant="headline">Login</Typography>
         <Typography variant="subheading">{props.data.subject.login}</Typography>
 
@@ -20,5 +20,5 @@ export default (props: UserProps) =>
         <Typography variant="headline">DriverLicence</Typography>
         <Typography variant="subheading">{props.data.driverLicence}</Typography>
 
-    </Paper>
+    </div>
 

@@ -83,7 +83,7 @@ export default class extends Component {
                 <Card>
                     <CardContent>
                         <Typography variant="headline">
-                            Login
+                            BSK2 Car Renting
                         </Typography>
                         <br/>
                         <TextField

@@ -20,7 +20,7 @@ This is frontend part for
 ![pick-role](https://i.imgur.com/zE4KQLB.png)
 
 ## Users GET -> /users
-![users](https://i.imgur.com/I7trumJ.png)
+![users](https://i.imgur.com/L42BNso.png)
 
 ## Mechanics GET -> /mechanics
 ![mechanics](https://i.imgur.com/ULBfL4I.png)
