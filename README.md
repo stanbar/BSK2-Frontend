@@ -9,34 +9,35 @@ This is frontend part for
 - **Flow** - Static type checker for JS 
 
 
-##Signup -> POST /signup
-![signup](https://i.imgur.com/x4T958I.png)
+![login](https://i.imgur.com/mpcteJz.png)
+## Signup -> POST /signup
+![signup](https://i.imgur.com/ks3gJ19.png)
 
-##Login POST -> /login -redirect-> /myRoles
-![login](https://i.imgur.com/ZWKpjj8.png)
+## Login POST -> /login -redirect-> /myRoles
+![login](https://i.imgur.com/mpcteJz.png)
 
-##Pick role -> POST /login
-![pick-role](https://i.imgur.com/3Ij6FKR.png)
+## Pick role -> POST /login
+![pick-role](https://i.imgur.com/zE4KQLB.png)
 
-##Users GET -> /users
+## Users GET -> /users
 ![users](https://i.imgur.com/I7trumJ.png)
 
-##Mechanics GET -> /mechanics
+## Mechanics GET -> /mechanics
 ![mechanics](https://i.imgur.com/ULBfL4I.png)
 
-##Cars GET -> /cars
+## Cars GET -> /cars
 ![cars](https://i.imgur.com/9t4iuqi.png)
 
-##New rent POST -> /rents
+## New rent POST -> /rents
 ![new-rent](https://i.imgur.com/nZZaxhM.png)
 
-##Rents GET -> /rents
+## Rents GET -> /rents
 ![rents](https://i.imgur.com/gCYeLpL.png)
 
-##Repairs GET -> /repairs
+## Repairs GET -> /repairs
 ![repairs](https://i.imgur.com/IAuSVr8.png)
 
-##Roles GET -> /roles
+## Roles GET -> /roles
 ![roles](https://i.imgur.com/ZFNdMfw.png)
 
 
