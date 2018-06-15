@@ -11,7 +11,7 @@
     "react-scripts": "1.1.4",
     "react-toastify": "^4.0.2"
   },
-  "proxy": "http://localhost:9090",
+  "proxy": "https://localhost:8443",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
