@@ -1,12 +1,18 @@
 import React from 'react';
 import {
-    ListItem,
-    ListItemText,
+    Typography,
 } from '@material-ui/core';
 import {RepairProps} from './Repair'
 
 export default (props: RepairProps) =>
-    <ListItem button>
-        <ListItemText primary={props.data.mechanic.subject.login}/>
-        <ListItemText primary={props.data.car.brand + " " +props.data.car.model}/>
-    </ListItem>
+    <div>
+        <Typography variant="headline">Login</Typography>
+        <Typography>{props.data.mechanic.subject.login}</Typography>
+        <br/>
+        <Typography variant="headline">Car</Typography>
+        <Typography variant="subheading">Brand</Typography>
+        <Typography>{props.data.car.brand}</Typography>
+        <br/>
+        <Typography variant="subheading">Model</Typography>
+        <Typography>{props.data.car.model}</Typography>
+    </div>

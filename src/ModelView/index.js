@@ -12,7 +12,6 @@ export {default as MechanicDetailed} from './Mechanic/MechanicDetailed'
 
 export {default as Rent} from './Rent/Rent'
 export {default as RentDetailed} from './Rent/RentDetailed'
-export {default as AddNewRentDialog} from './Rent/AddNewRentDialog'
 
 export {default as Repair} from './Repair/Repair'
 export {default as RepairDetailed} from './Repair/RepairDetailed'

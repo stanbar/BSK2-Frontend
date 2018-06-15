@@ -1,46 +1,39 @@
-import {User, UserDetailed, Mechanic, MechanicDetailed, Car, CarDetailed, Role, RoleDetailed, Rent,RentDetailed,AddNewRentDialog, Repair, RepairDetailed} from './ModelView'
+import {User, UserDetailed, Mechanic, MechanicDetailed, Car, CarDetailed, Role, RoleDetailed, Rent,RentDetailed, Repair, RepairDetailed} from './ModelView'
 
 export type Tab = {
     name: string,
     component: any,
-    detailedComponent: any,
-    addNewItemDialog : any
+    detailedComponent: any
 }
 export const tabs: Array<Tab> = [
     {
         name: 'users',
         component: User,
-        detailedComponent: UserDetailed,
-        addNewItemDialog : null
+        detailedComponent: UserDetailed
     },
     {
         name: 'mechanics',
         component: Mechanic,
-        detailedComponent: MechanicDetailed,
-        addNewItemDialog : null
+        detailedComponent: MechanicDetailed
     },
     {
         name: 'cars',
         component: Car,
-        detailedComponent: CarDetailed,
-        addNewItemDialog : null
+        detailedComponent: CarDetailed
     },
     {
         name: 'rents',
         component: Rent,
-        detailedComponent: RentDetailed,
-        addNewItemDialog : AddNewRentDialog
+        detailedComponent: RentDetailed
     },
     {
         name: 'repairs',
         component: Repair,
-        detailedComponent: RepairDetailed,
-        addNewItemDialog : null
+        detailedComponent: RepairDetailed
     },
     {
         name: 'roles',
         component: Role,
-        detailedComponent: RoleDetailed,
-        addNewItemDialog : null
+        detailedComponent: RoleDetailed
     }
 ];

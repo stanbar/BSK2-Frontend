@@ -25,7 +25,7 @@ type MainProps = {
     user: User,
     data: mixed,
     tab: Tab,
-    selectedItem : any,
+    selectedItem: any,
     onItemSelected: Function
 }
 
@@ -47,9 +47,11 @@ export class Main extends Component {
 
                         <List component="nav">
                             {data ?
-                                data.map(item => <DataComponent onClick={() => this.props.onItemSelected(item)}
-                                                                key={tab.name + item.id}
-                                                                data={item}/>)
+                                data.map(item => <DataComponent
+                                    onClick={() => this.props.onItemSelected(item)}
+                                    key={tab.name + item.id}
+                                    data={item}
+                                    user={user}/>)
                                 : <ListItem key="mainEmpty">
                                     <ListItemText primary="Empty"/>
                                 </ListItem>

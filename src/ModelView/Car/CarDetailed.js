@@ -1,14 +1,18 @@
 // @flow
 import React from 'react';
 import {
-    ListItem,
-    ListItemText,
+    Typography,
 } from '@material-ui/core';
 import {CarProps} from './Car'
 
 export default (props: CarProps) =>
-    <ListItem button>
-        <ListItemText primary={props.data.brand}/>
-        <ListItemText primary={props.data.model}/>
-        <ListItemText primary={props.data.price}/>
-    </ListItem>
+    <div>
+        <Typography variant="headline">Brand</Typography>
+        <Typography>{props.data.brand}</Typography>
+        <br/>
+        <Typography variant="headline">Model</Typography>
+        <Typography>{props.data.model}</Typography>
+        <br/>
+        <Typography variant="headline">Model</Typography>
+        <Typography>{props.data.price}</Typography>
+    </div>

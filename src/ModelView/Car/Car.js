@@ -11,6 +11,7 @@ import {AddCircle} from '@material-ui/icons'
 import AddNewRentDialog from '../Rent/AddNewRentDialog'
 
 export type Car = {
+    id: string,
     brand: string,
     model: string,
     price: number
@@ -54,7 +55,10 @@ export default class extends Component {
                         </IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>
-                <AddNewRentDialog hideDialog={this.hideDialog} open={this.state.openNewRent} car={this.props.data}/>
+                <AddNewRentDialog hideDialog={this.hideDialog}
+                                  open={this.state.openNewRent}
+                                  car={this.props.data}
+                                  user={this.props.user}/>
             </div>
         )
     }

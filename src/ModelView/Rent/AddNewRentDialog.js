@@ -10,21 +10,31 @@ import {
     DialogTitle,
 } from '@material-ui/core';
 import axios from 'axios'
+import {toast} from 'react-toastify';
 
-type RoleOption = {
-    id: number,
-    name: string,
-    description: string
-}
-type PickRoleDialogProps = {
-    open: boolean,
-    roles: Array<RoleOption>,
-    onRoleSelected: Function
-}
 export default class extends Component {
-    createRent = () => {
-        //axios.post todo create rent
+    state = {
+        from: "2018-06-20T10:30",
+        to: "2018-06-20T10:30"
     };
+
+    async createRent() {
+        const data = {
+            userId: this.props.user.id,
+            carId: this.props.car.id,
+            to: this.state.to,
+            from: this.state.from
+        };
+        console.log(data);
+        try {
+            toast.info('--> POST /rents');
+            await axios.post('/rents', data);
+            toast.info('<-- POST /rents');
+        } catch (e) {
+            toast.error('<--ERROR /rents ' + e);
+        }
+    };
+
 
     render() {
         return (
@@ -40,6 +50,7 @@ export default class extends Component {
 
 
                     <TextField
+                        onChange={(e) => this.setState({from: e.target.value})}
                         id="datetime-local"
                         label="From"
                         type="datetime-local"
@@ -49,6 +60,7 @@ export default class extends Component {
                         }}
                     />
                     <TextField
+                        onChange={(e) => this.setState({to: e.target.value})}
                         id="datetime-local"
                         label="To"
                         type="datetime-local"
@@ -64,7 +76,7 @@ export default class extends Component {
                     <Button onClick={this.props.hideDialog} color="accent">
                         Cancel
                     </Button>
-                    <Button onClick={this.createRent} color="primary">
+                    <Button onClick={() => this.createRent()} color="primary">
                         Create
                     </Button>
                 </DialogActions>
