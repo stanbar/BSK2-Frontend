@@ -8,6 +8,11 @@ This is frontend part for
 - **Webpack** - Module bundler  
 - **Flow** - Static type checker for JS 
 
+### How to run
+```
+$ yarn start
+```
+and the website will be available on *localhost:3030*
 
 ![welcome](https://i.imgur.com/1SywC6C.png)
 
