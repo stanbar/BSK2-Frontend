@@ -68,6 +68,8 @@ Now, let's switch to **admin** role and preview whole database
 ![roles](https://i.imgur.com/ZFNdMfw.png)
 
 
+## Literatura
+1. Kryptografia dla praktyków. Protokoły, algorytmy i programy źródłowe w języku C, Bruce Schneler
 
 
 
